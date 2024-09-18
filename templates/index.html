@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Smart Farming Assistant</title>
+</head>
+<body>
+    <h1>Smart Farming Assistant</h1>
+
+    <form action="/weather" method="POST">
+        <label for="city">Enter City for Weather Data:</label>
+        <input type="text" id="city" name="city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather %}
+    <h2>Weather in {{ city }}:</h2>
+    <p>Temperature: {{ weather['main']['temp'] }} °C</p>
+    <p>Weather: {{ weather['weather'][0]['description'] }}</p>
+    <p>Humidity: {{ weather['main']['humidity'] }}%</p>
+    {% endif %}
+</body>
+</html>
